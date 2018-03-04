@@ -1,21 +1,22 @@
 package rpn;
 
-import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CLI {
-    public static final void main(final String[] args) {
+    public static void main(final String[] args) {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
 
         System.out.println("About to evaluate '" + expression + "'");
-        long result = evaluate(expression);
-        System.out.println("> " + result);
+        System.out.println("> " + getImplementations().get(RpnImpl.class.getSimpleName()).evaluate(expression));
     }
 
-    static long evaluate(@NonNull @NotNull final String expression) {
-        return 0;
+    private static Map<String, RpnEvaluator> getImplementations() {
+        final Map<String, RpnEvaluator> impls = new HashMap<>();
+        ServiceLoader.load(RpnEvaluator.class).forEach(rpn -> impls.put(rpn.getClass().getSimpleName(), rpn));
+        return impls;
     }
 }

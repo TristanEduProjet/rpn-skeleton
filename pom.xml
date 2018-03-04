@@ -51,6 +51,10 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <!--<maven.compiler.debug>true</maven.compiler.debug>-->
+        <maven.compiler.optimize>true</maven.compiler.optimize>
+        <!--<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.1.0</junit.version>
     </properties>
@@ -100,6 +104,30 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/java</directory>
+                <includes><include>**</include></includes>
+                <excludes><exclude>**/*.java</exclude></excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes><include>**</include></includes>
+                <excludes><exclude>**/*.java</exclude></excludes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>

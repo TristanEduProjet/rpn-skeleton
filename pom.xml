@@ -8,6 +8,43 @@
     <artifactId>esgi-rpn</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>RPN implementation</name>
+    <description>Simple exercise for implement an RPN evaluator</description>
+    <inceptionYear>2018</inceptionYear>
+    <url>https://github.com/TristanEduProjet/rpn-skeleton</url>
+    <organization>
+        <name>ESGI</name>
+        <url>https://www.esgi.fr/</url>
+    </organization>
+
+    <scm>
+        <url>${project.url}</url>
+        <connection>scm:git:git://github.com/TristanEduProjet/rpn-skeleton.git</connection>
+        <developerConnection>scm:git:git@github.com:TristanEduProjet/rpn-skeleton.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>${project.url}/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>Arnauld</id>
+            <name>Arnauld Loyer</name>
+            <url>https://github.com/Arnauld</url>
+            <email>arnauld.loyer@gmail.com</email>
+            <organization>Arolla</organization>
+            <organizationUrl>http://www.arolla.fr/</organizationUrl>
+            <roles><role>teacher</role></roles>
+        </developer>
+        <developer>
+            <id>TristanEduProjet</id>
+            <name>Tristan</name>
+            <url>https://github.com/TristanEduProjet</url>
+            <roles><role>student</role></roles>
+        </developer>
+    </developers>
+
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- Properties -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -33,6 +70,8 @@
             <artifactId>annotations</artifactId>
             <version>15.0</version>
         </dependency>
+
+        <!-- Tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

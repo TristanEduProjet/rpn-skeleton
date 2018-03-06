@@ -36,6 +36,18 @@ public interface RpnTestable {
     }
 
     @Test
+    @DisplayName("single negative number (single digit)")
+    default void should_evaluate_negative_single_digit_constant() {
+        assertThat(this.getInstance().evaluate("-5")).isEqualTo(-5);
+    }
+
+    @Test
+    @DisplayName("single negative number (multiple digits)")
+    default void should_evaluate_negative_multiple_digits_constant() {
+        assertThat(this.getInstance().evaluate("-17")).isEqualTo(-17);
+    }
+
+    @Test
     @DisplayName("Simple addition")
     default void should_evaluate_simple_addition() {
         assertThat(this.getInstance().evaluate("17 5 +")).isEqualTo(22);

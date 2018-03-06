@@ -1,5 +1,7 @@
 package rpn.implementations;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NonNull;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +18,7 @@ import java.util.function.BiFunction;
  */
 @MetaInfServices
 public class RpnByStack implements RpnEvaluator {
+    @Getter(AccessLevel.PROTECTED)
     private final static Map<Character, BiFunction<Double, Double, Double>> operands = new HashMap<>();
     static {
         operands.put('+', (a, b) -> a+b);
@@ -33,13 +36,15 @@ public class RpnByStack implements RpnEvaluator {
      * @throws IllegalStateException if the expression give too numbers without operate them
      */
     @Override
-    public long evaluate(@NotNull final String expression) {
+    public double evaluate(@NotNull final String expression) {
         final Stack<Double> stack = new Stack<>();
         for(@NotNull @NonNull final String tk : expression.split(" "))
             if(/*NumberUtils.isCreatable(tk) ||*/ NumberUtils.isParsable(tk))
                 stack.push(Double.valueOf(tk));
-            else
-                stack.push(operands.get(tk.charAt(0)).apply(stack.pop(), stack.pop()));
+            else {
+                final Double b = stack.pop(), a = stack.pop(); //Note: order in stack is inverted !
+                stack.push(operands.get(tk.charAt(0)).apply(a, b));
+            }
         if(stack.size() > 1)
             throw new IllegalStateException("There are too numbers in stack");
         return (long)((double)stack.pop());

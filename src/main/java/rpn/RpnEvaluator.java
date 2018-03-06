@@ -9,5 +9,5 @@ public interface RpnEvaluator {
      * @param expression the RPN expression
      * @return the result
      */
-    long evaluate(@NonNull @NotNull final String expression);
+    double evaluate(@NonNull @NotNull final String expression);
 }
